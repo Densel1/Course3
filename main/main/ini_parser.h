@@ -7,14 +7,14 @@
 
 using namespace std;
 
-
+// потом добавлю исключения
 class ini_parser
 {
 private:
 	std::multimap<std::string, pair<std::string,string>> sections;
 
 public:
-	ini_parser(std::string name) :fName(name)//, sections("","")
+	ini_parser(std::string name) :fName(name)
 	{
 		std::ifstream in(name);
 		std::string line;
@@ -26,8 +26,10 @@ public:
 
 		if (in.is_open())
 		{
+			cout << "file is opened" << endl;
 			while (std::getline(in, line))
 			{
+//				cout << "line " << line << endl;
 				for (auto& s : line)
 				{
 					if (s == ';') break;
@@ -57,10 +59,15 @@ public:
 					}
 					else value_name.push_back(s);
 				}
+
+
 				if (is_reading_value && !value.empty())
 				{
 					std::pair<std::string, std::string> p1;
                     p1 = make_pair(value_name, value);
+		//			cout << "sec_name: " << section_name << endl;
+
+		//			cout << "val_name: " << value_name << endl;
 
 					sections.insert(pair<string, pair<string, string>>(section_name, p1));
 
@@ -70,17 +77,16 @@ public:
 				value_name.erase();
 			}
 		}
+		else { cout << "can't open file" << endl; }
 	}
 
 	std::string fName;
 
-
+	// тут мне не понятно как возвращать значение которое выставлено в параметре шаблона
+	// ведь заранее не известно какого типа у нас переменная
 	//template <typename T>
 	string get_value(std::string line)
 	{
-	 // T value;
-	 // const type_info& ti = typeid(value);
-
 	  string sectoin_name;
 	  string str;
 	  
@@ -99,18 +105,22 @@ public:
 			sel.push_back(s);
 		}
 		else { val.push_back(s); }
-		
 	  }
-	  for(auto it = begin(sections); it!=end(sections);it++)
+
+	  multimap<string, pair<string, string>>::iterator it = begin(sections);
+	  for(; it!=end(sections);it++)
 	  {
 		if((it->first)==sel)
 		{
-		  if(str == (it->second.first))
+		  if(val == (it->second.first))
 		  {
 			  {
-				  cout << (it->second.first) << "=" << (it->second.second); // приводим значение my_value к типу возвращаемого параметра
+				//  cout << "Section: " << it->first << endl;
+				//  cout << it->second.first << ":"  << it->second.second << endl;
+				  str = it->second.second;
 			  }
 		  }
+		  return str;
 		}
 	  }
 	  return " ";
