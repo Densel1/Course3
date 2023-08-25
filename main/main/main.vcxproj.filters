@@ -21,9 +21,15 @@
     <ClCompile Include="ini_parser.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="myException.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ini_parser.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="myException.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

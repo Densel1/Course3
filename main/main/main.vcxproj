@@ -130,9 +130,11 @@
   <ItemGroup>
     <ClCompile Include="ini_parser.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="myException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ini_parser.h" />
+    <ClInclude Include="myException.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
