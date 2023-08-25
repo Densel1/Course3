@@ -94,7 +94,7 @@ void read_file(std::string name, std::multimap<std::string, std::pair<std::strin
 			value_name.erase();
 		}
 	}
-	else  throw std::exception("can't open file"); //std::cout << "can't open file" << std::endl; }
+	else  throw myException("can't open file");
 	in.close();
 }  
 
